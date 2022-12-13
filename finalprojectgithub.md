@@ -173,49 +173,10 @@ the \#MeToo Campaign. Policy & Internet, 11(4), 418–438.
 ``` r
 library(tidytext)
 library(dplyr)
-```
-
-    ## 
-    ## Attaching package: 'dplyr'
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     filter, lag
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     intersect, setdiff, setequal, union
-
-``` r
 library(stringr)
 library(textdata)
 library(tidyverse)
-```
-
-    ## ── Attaching packages
-    ## ────────────────────────────────────────────────────────────────
-    ## tidyverse 1.3.2 ──
-
-    ## ✔ ggplot2 3.4.0     ✔ readr   2.1.3
-    ## ✔ tibble  3.1.8     ✔ purrr   0.3.5
-    ## ✔ tidyr   1.2.1     ✔ forcats 0.5.2
-    ## ── Conflicts ─────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-    ## ✖ dplyr::filter() masks stats::filter()
-    ## ✖ dplyr::lag()    masks stats::lag()
-
-``` r
 library(caret)
-```
-
-    ## Loading required package: lattice
-    ## 
-    ## Attaching package: 'caret'
-    ## 
-    ## The following object is masked from 'package:purrr':
-    ## 
-    ##     lift
-
-``` r
 library(ggplot2)
 library(readr)
 
