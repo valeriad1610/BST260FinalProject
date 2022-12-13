@@ -2,16 +2,7 @@
 title: "Final Project Code"
 author: "Valeria Duran"
 date: "2022-12-12"
-output: html_document
----
-
----
-title: "#MeToo: Hatefulness of Twitter Users"
-author: "Valeria Duran, BST260 Final Project"
-date: "2022-12-03"
-output:
-  pdf_document: default
-  html_document: default
+output: github_document
 ---
 
 ## Introduction 
@@ -51,6 +42,7 @@ If I had more time, I would ask a different question of the data: how does senti
 ## References  
 
 Lindgren, S. (2019). Movement Mobilization in the Age of Hashtag Activism: Examining the Challenge of Noise, Hate, and Disengagement in the #MeToo Campaign. Policy & Internet, 11(4), 418–438. https://doi.org/10.1002/poi3.212 
+
 ```{r, include=FALSE}
 options(tinytex.verbose = TRUE)
 ```

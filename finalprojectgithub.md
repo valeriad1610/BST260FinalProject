@@ -193,13 +193,13 @@ library(tidyverse)
 ```
 
     ## ── Attaching packages
-    ## ───────────────────────────────────────
+    ## ────────────────────────────────────────────────────────────────
     ## tidyverse 1.3.2 ──
 
     ## ✔ ggplot2 3.4.0     ✔ readr   2.1.3
     ## ✔ tibble  3.1.8     ✔ purrr   0.3.5
     ## ✔ tidyr   1.2.1     ✔ forcats 0.5.2
-    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+    ## ── Conflicts ─────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
     ## ✖ dplyr::filter() masks stats::filter()
     ## ✖ dplyr::lag()    masks stats::lag()
 
@@ -223,10 +223,10 @@ data2 <- read_csv("~/Library/CloudStorage/OneDrive-HarvardUniversity/MeTooHate.c
 ```
 
     ## Rows: 807174 Columns: 10
-    ## ── Column specification ────────────────────────────────────────────────────────
+    ## ── Column specification ─────────────────────────────────────────────────────────────────────────────────
     ## Delimiter: ","
     ## chr  (2): text, location
-    ## dbl  (7): status_id, favorite_count, retweet_count, followers_count, friends...
+    ## dbl  (7): status_id, favorite_count, retweet_count, followers_count, friends_count, statuses_count, c...
     ## dttm (1): created_at
     ## 
     ## ℹ Use `spec()` to retrieve the full column specification for this data.
@@ -483,12 +483,11 @@ head(data2,1)
 ```
 
     ## # A tibble: 1 × 11
-    ##   status_id text     created_at          favor…¹ retwe…² locat…³ follo…⁴ frien…⁵
-    ##       <dbl> <chr>    <dttm>                <dbl>   <dbl> <chr>     <dbl>   <dbl>
-    ## 1   1.05e18 Entitle… 2018-09-30 01:17:15       5       1 McAlle…    2253    2303
-    ## # … with 3 more variables: statuses_count <dbl>, category <dbl>, index <int>,
-    ## #   and abbreviated variable names ¹​favorite_count, ²​retweet_count, ³​location,
-    ## #   ⁴​followers_count, ⁵​friends_count
+    ##   status_id text        created_at          favor…¹ retwe…² locat…³ follo…⁴ frien…⁵ statu…⁶ categ…⁷ index
+    ##       <dbl> <chr>       <dttm>                <dbl>   <dbl> <chr>     <dbl>   <dbl>   <dbl>   <dbl> <int>
+    ## 1   1.05e18 Entitled, … 2018-09-30 01:17:15       5       1 McAlle…    2253    2303   23856       0     1
+    ## # … with abbreviated variable names ¹​favorite_count, ²​retweet_count, ³​location, ⁴​followers_count,
+    ## #   ⁵​friends_count, ⁶​statuses_count, ⁷​category
 
 ``` r
 head(sub,1) 
@@ -496,11 +495,10 @@ head(sub,1)
 
     ## # A tibble: 1 × 11
     ## # Groups:   newid [1]
-    ##   newid        avgsent text  locat…¹ follo…² frien…³ categ…⁴  index  prop ntweet
-    ##   <fct>          <dbl> <chr> <chr>     <dbl>   <dbl>   <dbl>  <int> <dbl>  <int>
-    ## 1 - GAME OVER…      -1 Moth… - GAME…       7      68       0 668030     0      1
-    ## # … with 1 more variable: hateful <fct>, and abbreviated variable names
-    ## #   ¹​location, ²​followers_count, ³​friends_count, ⁴​category
+    ##   newid                avgsent text           locat…¹ follo…² frien…³ categ…⁴  index  prop ntweet hateful
+    ##   <fct>                  <dbl> <chr>          <chr>     <dbl>   <dbl>   <dbl>  <int> <dbl>  <int> <fct>  
+    ## 1 - GAME OVER SIS_7_68      -1 Motherfucking… - GAME…       7      68       0 668030     0      1 0      
+    ## # … with abbreviated variable names ¹​location, ²​followers_count, ³​friends_count, ⁴​category
 
 ``` r
 dsub<- sub[!duplicated(sub$newid), ]
@@ -551,8 +549,8 @@ sd(p_hat)
 confusionMatrix(y_hat, test_set$hateful)$overall[["Accuracy"]] #0.8353414
 ```
 
-    ## Warning in confusionMatrix.default(y_hat, test_set$hateful): Levels are not in
-    ## the same order for reference and data. Refactoring data to match.
+    ## Warning in confusionMatrix.default(y_hat, test_set$hateful): Levels are not in the same order for
+    ## reference and data. Refactoring data to match.
 
     ## [1] 0.8353414
 
@@ -560,9 +558,8 @@ confusionMatrix(y_hat, test_set$hateful)$overall[["Accuracy"]] #0.8353414
 cm1all <- confusionMatrix(data=y_hat, reference = test_set$hateful)
 ```
 
-    ## Warning in confusionMatrix.default(data = y_hat, reference = test_set$hateful):
-    ## Levels are not in the same order for reference and data. Refactoring data to
-    ## match.
+    ## Warning in confusionMatrix.default(data = y_hat, reference = test_set$hateful): Levels are not in the
+    ## same order for reference and data. Refactoring data to match.
 
 ``` r
 cm1all
@@ -638,8 +635,8 @@ y_hat_glm <- factor(ifelse(p_hat_glm > 0.5, '1', '0'))
 confusionMatrix(y_hat_glm, test_set$hateful)$overall["Accuracy"] #0.8353
 ```
 
-    ## Warning in confusionMatrix.default(y_hat_glm, test_set$hateful): Levels are not
-    ## in the same order for reference and data. Refactoring data to match.
+    ## Warning in confusionMatrix.default(y_hat_glm, test_set$hateful): Levels are not in the same order for
+    ## reference and data. Refactoring data to match.
 
     ##  Accuracy 
     ## 0.8353414
@@ -648,9 +645,8 @@ confusionMatrix(y_hat_glm, test_set$hateful)$overall["Accuracy"] #0.8353
 cm2all <- confusionMatrix(data=y_hat_glm, reference = test_set$hateful)
 ```
 
-    ## Warning in confusionMatrix.default(data = y_hat_glm, reference =
-    ## test_set$hateful): Levels are not in the same order for reference and data.
-    ## Refactoring data to match.
+    ## Warning in confusionMatrix.default(data = y_hat_glm, reference = test_set$hateful): Levels are not in the
+    ## same order for reference and data. Refactoring data to match.
 
 ``` r
 cm2all
@@ -802,8 +798,8 @@ y_hat <- ifelse(p_hat > 0.5, '1', '0') |> as.factor()
 confusionMatrix(y_hat, test_set$hateful)$overall[["Accuracy"]] #0.7273
 ```
 
-    ## Warning in confusionMatrix.default(y_hat, test_set$hateful): Levels are not in
-    ## the same order for reference and data. Refactoring data to match.
+    ## Warning in confusionMatrix.default(y_hat, test_set$hateful): Levels are not in the same order for
+    ## reference and data. Refactoring data to match.
 
     ## [1] 0.7272727
 
@@ -811,9 +807,8 @@ confusionMatrix(y_hat, test_set$hateful)$overall[["Accuracy"]] #0.7273
 cm1 <- confusionMatrix(data=y_hat, reference = test_set$hateful)
 ```
 
-    ## Warning in confusionMatrix.default(data = y_hat, reference = test_set$hateful):
-    ## Levels are not in the same order for reference and data. Refactoring data to
-    ## match.
+    ## Warning in confusionMatrix.default(data = y_hat, reference = test_set$hateful): Levels are not in the
+    ## same order for reference and data. Refactoring data to match.
 
 ``` r
 cm1
@@ -860,8 +855,8 @@ y_hat_glm <- factor(ifelse(p_hat_glm > 0.5, '1', '0'))
 confusionMatrix(y_hat_glm, test_set$hateful)$overall["Accuracy"] #0.7272727 
 ```
 
-    ## Warning in confusionMatrix.default(y_hat_glm, test_set$hateful): Levels are not
-    ## in the same order for reference and data. Refactoring data to match.
+    ## Warning in confusionMatrix.default(y_hat_glm, test_set$hateful): Levels are not in the same order for
+    ## reference and data. Refactoring data to match.
 
     ##  Accuracy 
     ## 0.7272727
@@ -870,9 +865,8 @@ confusionMatrix(y_hat_glm, test_set$hateful)$overall["Accuracy"] #0.7272727
 cm2 <- confusionMatrix(data=y_hat_glm, reference = test_set$hateful)
 ```
 
-    ## Warning in confusionMatrix.default(data = y_hat_glm, reference =
-    ## test_set$hateful): Levels are not in the same order for reference and data.
-    ## Refactoring data to match.
+    ## Warning in confusionMatrix.default(data = y_hat_glm, reference = test_set$hateful): Levels are not in the
+    ## same order for reference and data. Refactoring data to match.
 
 ``` r
 cm2
